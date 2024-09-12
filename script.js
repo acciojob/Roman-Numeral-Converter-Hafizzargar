@@ -1,50 +1,38 @@
 function convertToRoman(num) {
   	const obj = {
-      0:['M',1000], 
-      1:['D', 500], 
-      2:['C', 100], 
-      3:['L', 50], 
-      4:['X', 10], 
-      5:['V', 5], 
-      6:['I', 1]
+       0:['M',1000], 
+        1:['CM',900], // 900
+        2:['D', 500], 
+        3:['CD',400], // 400
+        4:['C', 100], 
+        5:['XC',90],  // 90
+        6:['L', 50], 
+        7:['XL',40],  // 40
+        8:['X', 10], 
+        9:['IX',9],   // 9
+        10:['V', 5], 
+        11:['IV',4],  // 4
+        12:['I', 1]
     };
-	// let result = '';
- //  const values = Object.values(obj);   //convert obj to array names as values
 
- //  for (let i = 0; i < values.length; i++) {
- //    const [symbol, value] = values[i];   //destruction a arr  array destructuring
- //    while (num >= value) {
- //      result += symbol;
- //      num -= value;
- //    }
-	let result = "";
+  //your code here
+let result='';
 
-  for (let key in obj) {
-    const [symbol, value] = obj[key];
-    const count = Math.floor(num / value);
-
-    if (count >= 1) {
-      result += symbol.repeat(count);
-      num -= value * count;
-    }
-
-    // Handle cases like 4, 40, 9, etc. (using subtraction notation)
-    if (key % 2 === 0 && num >= obj[key + 2][1] - value) {
-      result += obj[key + 2][0] + symbol;
-      num -= obj[key + 2][1] - value;
-    }
-  }
-
-  return result;
-  }
-
- 
+       
+        for(let i=0;i<Object.keys(obj).length;i++){
+           
+            while(num>=obj[i][1]){
+                num=num-obj[i][1];
+                result=result+obj[i][0];
+               
+            }
+            
+        }
+        
+        return result;
+        
+}
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
 
 console.log(convertToRoman(36));
-
-
-
-
-// do not edit below this line
 module.exports = convertToRoman
