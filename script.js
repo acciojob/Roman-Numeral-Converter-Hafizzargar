@@ -8,6 +8,16 @@ function convertToRoman(num) {
       5:['V', 5], 
       6:['I', 1]
     };
+	let result = '';
+  const values = Object.values(obj);   //convert obj to array names as values
+
+  for (let i = 0; i < values.length; i++) {
+    const [symbol, value] = values[i];   //destruction a arr  array destructuring
+    while (num >= value) {
+      result += symbol;
+      num -= value;
+    }
+  }
 
   //your code here
 
