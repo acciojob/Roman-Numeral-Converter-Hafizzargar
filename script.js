@@ -8,15 +8,34 @@ function convertToRoman(num) {
       5:['V', 5], 
       6:['I', 1]
     };
-	let result = '';
-  const values = Object.values(obj);   //convert obj to array names as values
+	// let result = '';
+ //  const values = Object.values(obj);   //convert obj to array names as values
 
-  for (let i = 0; i < values.length; i++) {
-    const [symbol, value] = values[i];   //destruction a arr  array destructuring
-    while (num >= value) {
-      result += symbol;
-      num -= value;
+ //  for (let i = 0; i < values.length; i++) {
+ //    const [symbol, value] = values[i];   //destruction a arr  array destructuring
+ //    while (num >= value) {
+ //      result += symbol;
+ //      num -= value;
+ //    }
+	let result = "";
+
+  for (let key in obj) {
+    const [symbol, value] = obj[key];
+    const count = Math.floor(num / value);
+
+    if (count >= 1) {
+      result += symbol.repeat(count);
+      num -= value * count;
     }
+
+    // Handle cases like 4, 40, 9, etc. (using subtraction notation)
+    if (key % 2 === 0 && num >= obj[key + 2][1] - value) {
+      result += obj[key + 2][0] + symbol;
+      num -= obj[key + 2][1] - value;
+    }
+  }
+
+  return result;
   }
 
   //your code here
